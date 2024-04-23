@@ -18,7 +18,7 @@ public class EmployeeService {
     }
 
 
-    public Employee add(String firstName, String lastNaime) {
+    public Employee add(String firstName, String lastNaime, int department) {
         Employee employee = new Employee(firstName,lastNaime);
         if (employees.size() >= SIZE_LIMIT) {
             throw new EmployeeStorageIsFullException();

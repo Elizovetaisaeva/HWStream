@@ -20,8 +20,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String add(@RequestParam String firstName, @RequestParam String lastName) {
-        Employee result = employeeService.add(firstName, lastName);
+    public String add(@RequestParam String firstName, @RequestParam String lastName,
+                      @RequestParam String Double , @RequestParam int department) {
+        Employee result = employeeService.add(firstName, lastName,  department);
         return generateMessage(result, "успешно создан");
     }
 
