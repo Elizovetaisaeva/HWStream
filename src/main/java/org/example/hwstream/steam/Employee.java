@@ -72,6 +72,13 @@ public class Employee {
     public int hashCode() {
         return Objects.hash(firstName, lastName, selary, department);
     }
+
+    public String getFirstNeme() {
+        return firstName;
+    }
+
+    public void put(Object o, Employee employee) {
+    }
 }
 
 

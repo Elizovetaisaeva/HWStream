@@ -1,6 +1,7 @@
 package org.example.hwstream.steam;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -17,17 +18,26 @@ public class EmployeeService {
         return employees.values();
     }
 
-
     public Employee add(String firstName, String lastNaime, int department) {
-        Employee employee = new Employee(firstName,lastNaime);
+        Employee employee = new Employee(firstName, lastNaime);
         if (employees.size() >= SIZE_LIMIT) {
             throw new EmployeeStorageIsFullException();
         }
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         }
-        employees.put(employee.getFullName(), employee);
+
+        String correctedFirstName = StringUtils.capitalize(employee.getFirstNeme().toLowerCase());
+        employee.setFirstName(correctedFirstName);
+        String correctedLastName = StringUtils.capitalize(employee.getLastName().toLowerCase());
+        employee.setLastName(correctedLastName);
+        employee.put(correcteKey(employee), employee);
         return employee;
+
+    }
+
+    private Object correcteKey(Employee employee) {
+        return null;
     }
 
     public Employee find(String firstName, String lastNaime) {
@@ -45,5 +55,8 @@ public class EmployeeService {
     private String createKey(String firstName, String lastNaime) {
         return firstName + " " + lastNaime;
     }
-}
 
+    private static void correctCase(String firstName, String lastNaime) {
+
+    }
+}
